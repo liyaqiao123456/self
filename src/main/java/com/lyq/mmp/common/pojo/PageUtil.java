@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.pagehelper.Page;
-
 /**
  * 封装分页请求结果
  * @author CZH
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class PageAjax<T> implements Serializable {
+public class PageUtil<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**当前页*/
     private int pageNo;
@@ -52,14 +50,14 @@ public class PageAjax<T> implements Serializable {
     /**所有导航页号*/
     private int[] navigatepageNums;
 
-    public PageAjax() {
+    public PageUtil() {
     }
 
     /**
      * 包装Page对象
      * @param list
      */
-    public PageAjax(List<T> list) {
+    public PageUtil(List<T> list) {
         this(list, 8);
     }
 
@@ -68,9 +66,9 @@ public class PageAjax<T> implements Serializable {
      * @param list page结果
      * @param navigatePages 页码数量
      */
-    public PageAjax(List<T> list, int navigatePages) {
-        if (list instanceof Page) {
-            Page page = (Page) list;
+    public PageUtil(List<T> list, int navigatePages) {
+        if (list instanceof com.github.pagehelper.Page) {
+            com.github.pagehelper.Page page = (com.github.pagehelper.Page) list;
             this.pageNo = page.getPageNum();
             this.pageSize = page.getPageSize();
 //            this.orderBy = page.getOrderBy();

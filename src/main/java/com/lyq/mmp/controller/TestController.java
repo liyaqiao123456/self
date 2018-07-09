@@ -1,30 +1,32 @@
 package com.lyq.mmp.controller;
 
-import com.lyq.mmp.common.pojo.AjaxResult;
-import com.lyq.mmp.common.pojo.PageAjax;
+import com.lyq.mmp.common.pojo.Result;
+import com.lyq.mmp.common.pojo.PageUtil;
 import com.lyq.mmp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lyq.mmp.service.UserService;
+import com.lyq.mmp.service.TestService;
 
 @Controller
-public class UserController {
+public class TestController {
 
 	@Autowired
-	private UserService userService;
+	private TestService userService;
 	
 	@ResponseBody
 	@RequestMapping("/queryUserDefPage")
-	public PageAjax<User> queryUserDefPage(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDefPage(PageUtil<User> page, User user){
+		page.setPageNo(1);
+		page.setPageSize(1);
 		return userService.queryUserDefPage(page, user);
 	}
 	
 	@ResponseBody
 	@RequestMapping("/data")
-	public PageAjax<User> queryUserDsPage(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDsPage(PageUtil<User> page, User user){
 		return userService.queryUserDsPage(page, user);
 	}
 
@@ -41,19 +43,19 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/data1")
-	public PageAjax<User> queryUserDs1Page(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDs1Page(PageUtil<User> page, User user){
 		return userService.queryUserDs1Page(page, user);
 	}
 	
 	@ResponseBody
 	@RequestMapping("/data2")
-	public PageAjax<User> queryUserDs2Page(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDs2Page(PageUtil<User> page, User user){
 		return userService.queryUserDs2Page(page, user);
 	}
 
 	@ResponseBody
 	@RequestMapping("/addUser")
-	public AjaxResult addUser(User user){
+	public Result addUser(User user){
 		return userService.addUser(user);
 	}
 

@@ -1,8 +1,8 @@
 package com.lyq.mmp.service;
 
 import com.lyq.mmp.common.ds.TargetDataSource;
-import com.lyq.mmp.common.pojo.AjaxResult;
-import com.lyq.mmp.common.pojo.PageAjax;
+import com.lyq.mmp.common.pojo.Result;
+import com.lyq.mmp.common.pojo.PageUtil;
 import com.lyq.mmp.common.utils.AppUtil;
 import com.lyq.mmp.mapper.AuthUserMapper;
 import com.lyq.mmp.model.User;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserService extends AbstratService<User> {
+public class TestService extends AbstratService<User> {
    @Autowired
    AuthUserMapper authUserMapper;
 	/**
@@ -20,12 +20,12 @@ public class UserService extends AbstratService<User> {
 	 * @param user
 	 * @return
 	 */
-	public PageAjax<User> queryUserDefPage(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDefPage(PageUtil<User> page, User user){
 		return queryPage(page, user);
 	}
 	
 	@TargetDataSource("ds")
-	public PageAjax<User> queryUserDsPage(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDsPage(PageUtil<User> page, User user){
 		return queryPage(page, user);
 	}
 
@@ -44,12 +44,12 @@ public class UserService extends AbstratService<User> {
 	}
 	
 	@TargetDataSource("ds1")
-	public PageAjax<User> queryUserDs1Page(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDs1Page(PageUtil<User> page, User user){
 		return queryPage(page, user);
 	}
 	
 	@TargetDataSource("ds2")
-	public PageAjax<User> queryUserDs2Page(PageAjax<User> page, User user){
+	public PageUtil<User> queryUserDs2Page(PageUtil<User> page, User user){
 		return queryPage(page, user);
 	}
 
@@ -60,7 +60,7 @@ public class UserService extends AbstratService<User> {
 	 */
 	@Transactional//添加事务
 	@TargetDataSource("ds1")
-	public AjaxResult addUser(User user) {
+	public Result addUser(User user) {
 		String str = AppUtil.getRandomString(5);
 		user.setUsername("user" + str);
 		user.setPassword("123456");
