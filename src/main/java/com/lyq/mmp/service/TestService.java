@@ -15,7 +15,7 @@ public class TestService extends AbstratService<User> {
    @Autowired
    AuthUserMapper authUserMapper;
 	/**
-	 * 使用默认数据源
+	 * 使用默认数据源时不需要标示
 	 * @param page
 	 * @param user
 	 * @return

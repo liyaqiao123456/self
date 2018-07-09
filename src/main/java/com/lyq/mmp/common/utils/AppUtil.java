@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import com.lyq.mmp.common.pojo.AjaxResult;
-import com.lyq.mmp.common.pojo.PageAjax;
+import com.lyq.mmp.common.pojo.Result;
+import com.lyq.mmp.common.pojo.PageUtil;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -26,11 +26,11 @@ public class AppUtil {
 	 * @param result
 	 * @return
 	 */
-	public static AjaxResult returnObj(String result) {
+	public static Result returnObj(String result) {
 		if (StringUtils.isEmpty(result)) {
-			return new AjaxResult();
+			return new Result();
 		}
-		return new AjaxResult(result);
+		return new Result(result);
 	}
 
 	/**
@@ -39,11 +39,11 @@ public class AppUtil {
 	 * @param data
 	 * @return
 	 */
-	public static AjaxResult returnObj(String result, Object data) {
+	public static Result returnObj(String result, Object data) {
 		if (StringUtils.isEmpty(result)) {
-			return new AjaxResult(data);
+			return new Result(data);
 		}
-		return new AjaxResult(result);
+		return new Result(result);
 	}
 
 	/**
@@ -52,12 +52,12 @@ public class AppUtil {
 	 * @param T
 	 * @return
 	 */
-	public static <T> AjaxResult returnList(String result, List<T> list) {
+	public static <T> Result returnList(String result, List<T> list) {
 		if (StringUtils.isEmpty(result)) {
 			return returnObj(result, list);
 		}
 		list = new ArrayList<T>();
-		return new AjaxResult(0, result, list);
+		return new Result(0, result, list);
 	}
 
 	/**
@@ -66,8 +66,8 @@ public class AppUtil {
 	 * @param list
 	 * @return
 	 */
-	public static <T> AjaxResult returnPage(String result, List<T> list) {
-		return returnObj(result, new PageAjax<T>(list));
+	public static <T> Result returnPage(String result, List<T> list) {
+		return returnObj(result, new PageUtil<T>(list));
 	}
 	
 	/**
@@ -75,8 +75,8 @@ public class AppUtil {
 	 * @param list
 	 * @return
 	 */
-	public static <T> PageAjax<T> returnPage(List<T> list){
-		return new PageAjax<T>(list);
+	public static <T> PageUtil<T> returnPage(List<T> list){
+		return new PageUtil<T>(list);
 	}
 
 	/**
