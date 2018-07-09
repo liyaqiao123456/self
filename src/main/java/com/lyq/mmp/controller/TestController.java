@@ -3,25 +3,31 @@ package com.lyq.mmp.controller;
 import com.lyq.mmp.common.pojo.Result;
 import com.lyq.mmp.common.pojo.PageUtil;
 import com.lyq.mmp.model.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lyq.mmp.service.TestService;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@Api(tags = "测试接口列表", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class TestController {
 
 	@Autowired
 	private TestService userService;
 	
-	@ResponseBody
-	@RequestMapping("/queryUserDefPage")
-	public PageUtil<User> queryUserDefPage(PageUtil<User> page, User user){
-		page.setPageNo(1);
-		page.setPageSize(1);
-		return userService.queryUserDefPage(page, user);
+	@ApiOperation(value = "验证码", httpMethod = "GET", consumes = "String")
+	@GetMapping(value = "/queryUserDefPage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public PageUtil<User> queryUserDefPage(PageUtil<User> pageBean, User user,int page,int pageSize){
+		pageBean.setPageNo(1);
+		pageBean.setPageSize(pageSize);
+		return userService.queryUserDefPage(pageBean, user);
 	}
 	
 	@ResponseBody
