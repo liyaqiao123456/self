@@ -47,6 +47,7 @@ public class Swagger2Config {
     //构建 api文档的详细信息函数
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
+                //http://localhost:8080/swagger-ui.html#/
                 //页面标题
                 .title("Swagger2 RESTful API")
                 //创建人
