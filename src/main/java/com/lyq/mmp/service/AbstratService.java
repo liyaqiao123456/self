@@ -2,8 +2,8 @@ package com.lyq.mmp.service;
 
 import java.util.List;
 
-import com.lyq.mmp.common.pojo.AjaxResult;
-import com.lyq.mmp.common.pojo.PageAjax;
+import com.lyq.mmp.common.pojo.Result;
+import com.lyq.mmp.common.pojo.PageUtil;
 import com.lyq.mmp.common.utils.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,13 +50,13 @@ public abstract class AbstratService<T> {
     	return mapper.selectAll();
     }
 
-    public PageAjax<T> queryPage(PageAjax<T> page, T entity){
+    public PageUtil<T> queryPage(PageUtil<T> page, T entity){
     	PageMethod.startPage(page.getPageNo(), page.getPageSize());
     	List<T> list = queryList(entity);
-        return new PageAjax<T>(list);
+        return new PageUtil<T>(list);
     }
 
-    public AjaxResult save(T entity) {
+    public Result save(T entity) {
         int ret = insert(entity);
         String result = null;
         if(ret <= 0){
@@ -69,7 +69,7 @@ public abstract class AbstratService<T> {
     	return mapper.insert(entity);
     }
 
-    public AjaxResult saveNotNull(T entity) {
+    public Result saveNotNull(T entity) {
     	int ret = mapper.insertSelective(entity);
         String result = null;
         if(ret <= 0){
@@ -78,7 +78,7 @@ public abstract class AbstratService<T> {
     	return AppUtil.returnObj(result);
     }
 
-    public AjaxResult update(T entity) {
+    public Result update(T entity) {
     	int ret = updateByID(entity);
         String result = null;
         if(ret <= 0){
@@ -91,7 +91,7 @@ public abstract class AbstratService<T> {
     	return mapper.updateByPrimaryKeySelective(entity);
     }
 
-    public AjaxResult delete(Object key) {
+    public Result delete(Object key) {
         int ret = deleteByID(key);
         String result = null;
         if(ret <= 0){
