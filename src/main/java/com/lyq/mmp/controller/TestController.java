@@ -16,7 +16,7 @@ import com.lyq.mmp.service.TestService;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-@Api(tags = "测试接口列表", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(tags = "test", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class TestController {
 
 	@Autowired
@@ -36,6 +36,7 @@ public class TestController {
 		apiResult.setData(userService.queryUserDefPage(pageBean, user));
 		return  apiResult;
 	}
-	
+
+
 
 }
