@@ -1,8 +1,11 @@
 package com.lyq.mmp.model;
 
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.*;
 
 @Table(name = "user")
+@Repository
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
