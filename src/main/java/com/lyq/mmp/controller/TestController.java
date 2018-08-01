@@ -7,7 +7,6 @@ import com.lyq.mmp.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,8 +50,6 @@ public class TestController {
 			pageBean.setPageSize(pageSize);
 			apiResult.setData(userService.queryUserDefPage(pageBean, user));
 			List list = Stream.of(1, 2, 3, 4).filter(p -> p > 2).collect(Collectors.toList());
-			JSONArray json = JSONArray.fromObject(lists);
-			System.out.println(json);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
